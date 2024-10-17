@@ -1,13 +1,33 @@
 # .github/workflows/ci.yml
 name: CI
 
+# on:
+#     push:
+#         branches:
+#             - main
+#     pull_request:
+#         branches:
+#             - main
+
 on:
     push:
         branches:
-            - main
+            - '*' # Runs on any branch when changes are pushed
     pull_request:
         branches:
-            - main
+            - '*' # Runs when a PR targets any branch
+
+# on:
+#     push:
+#         branches:
+#             - main
+#             - develop
+#             - feature/*
+#     pull_request:
+#         branches:
+#             - main
+#             - develop
+#             - feature/*
 
 jobs:
     build-and-test:
