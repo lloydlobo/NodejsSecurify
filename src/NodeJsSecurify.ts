@@ -15,19 +15,13 @@
 // => "Insecure Authentication",
 // => "Code Injection",
 
-import * as colors from 'colors';
-import * as esprima from 'esprima';
-import * as fs from 'fs';
-import * as path from 'path';
-import * as util from 'util';
-import { Vulnerability, detectVulnerability } from './Vulnerability/Vulnerability';
-import { checkVulnerablePackages } from './Vulnerability/DetectUnsafeNpmPackage';
-import { detectCallBackHell } from './Vulnerability/DetectCallBackHell';
-import { detectDangerousFunctions } from './Vulnerability/DetectDangerousFunctions';
-import { generatePDFReport } from './GenerateReport';
-import { isRegexVulnerable } from './Vulnerability/DetectVulnerableRegex';
-
-const colours = colors;
+import { testDiffLogs } from "./diffLogs";
+const __isSkipDiffTest = true; // TEMPORARY
+if (!__isSkipDiffTest) {
+    process.on("SIGINT", () => process.exit(0));
+    process.on("SIGTERM", () => process.exit(0));
+    testDiffLogs();
+}
 // there are two modes DEV and PROD.
 // switch to DEV mode while testing and PROD mode while pushing the code
 const mode: string = 'PROD';
